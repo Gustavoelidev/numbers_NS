@@ -1,5 +1,6 @@
 """############################
-### Desenvolvido por Gustavo Eli###"""
+### Desenvolvido por Gustavo Eli###
+"""
 import pandas as pd
 import streamlit as st
 
@@ -31,7 +32,7 @@ def gerar_planilha_com_cabecalho(produto, po, numeros_serie):
 
 
 # Interface Streamlit
-st.title("Automação de Planilha para Numero de serie | :green[INTELBRAS]")
+st.title("Automação de Planilha para Numero de serie | :white_check_mark:")
 
 # Entrada de dados
 produto = st.text_input("Digite o código do produto:")
