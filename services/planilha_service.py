@@ -12,12 +12,12 @@ def gerar_planilha(produto, po, numeros_serie):
         return ns
 
     # Linha inicial com os dados
-    linha_inicial = [produto, tratar_numero_serie(numeros_serie[0]), po]
+    linha_inicial = [po, produto, tratar_numero_serie(numeros_serie[0])]
 
     # Lista para armazenar as novas linhas (a partir da segunda linha)
     novas_linhas = []
     for ns in numeros_serie:
-        novas_linhas.append([produto, tratar_numero_serie(ns), po])
+        novas_linhas.append([po, produto, tratar_numero_serie(numeros_serie[0])])
 
     # Incluir a linha inicial e as novas linhas
     df_final = pd.DataFrame([linha_inicial] + novas_linhas)
