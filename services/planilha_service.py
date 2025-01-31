@@ -7,21 +7,16 @@ def gerar_planilha(produto, po, numeros_serie):
 
     # Tratamento de dados: se o número de série tiver 20 caracteres, remove os dois primeiros
     def tratar_numero_serie(ns):
-        if len(ns) == 20:
-            return ns[2:]
-        return ns
+        return ns[2:] if len(ns) == 20 else ns
 
-    # Linha inicial com os dados
-    linha_inicial = [po, produto, tratar_numero_serie(numeros_serie[0])]
+    # Criar a lista de dados com cabeçalhos
+    dados = [[po, produto, tratar_numero_serie(ns)] for ns in numeros_serie]
 
-    # Lista para armazenar as novas linhas (a partir da segunda linha)
-    novas_linhas = []
-    for ns in numeros_serie:
-        novas_linhas.append([po, produto, tratar_numero_serie(numeros_serie[0])])
+    # Criar o DataFrame com cabeçalhos
+    df_final = pd.DataFrame(dados, columns=["pedido_compra", "material", "numero_serie"])
 
-    # Incluir a linha inicial e as novas linhas
-    df_final = pd.DataFrame([linha_inicial] + novas_linhas)
+    # Salvar o arquivo CSV
+    df_final.to_csv(output_file, index=False, sep=';', header=True)
 
-    # Salvar como um arquivo temporário
-    df_final.to_csv(output_file, index=False, sep=';', header=False)
     return output_file
+
